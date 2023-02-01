@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+
+package parrot;
+
+import "google/protobuf/struct.proto";
+import "Protos/localized_text.proto";
+
+service Parrot {
+  rpc Format (FormatRequest) returns (FormatReply);
+}
+
+message FormatRequest {
+  string id = 1;
+  map<string, google.protobuf.Value> items = 2;
+  optional string locale = 3;
+  double value = 4;
+}
+
+message FormatReply {
+  google.type.LocalizedText message = 1;
+  optional string error = 2;
+}
